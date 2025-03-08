@@ -1,0 +1,7 @@
+# Ignorar entornos virtuales y archivos innecesarios
+env/
+__pycache__/
+*.log
+*.pyc
+*.pyo
+.vscode/
