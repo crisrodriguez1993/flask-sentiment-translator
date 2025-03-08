@@ -56,6 +56,7 @@ Si todo funciona correctamente, verás algo como esto:
 ## 🔥 3. Endpoints Disponibles
 
 ### **📌 3.1 Análisis de Sentimiento**
+- **Modelo:** DistilBERT base uncased fine-tuned SST-2
 - **Ruta:** `/predict`
 - **Método:** `POST`
 - **Descripción:** Recibe un texto en inglés y devuelve su sentimiento (`0`: negativo, `1`: positivo).
@@ -74,6 +75,7 @@ curl -X POST "http://127.0.0.1:5555/predict" \
 ---
 
 ### **📌 3.2 Traducción de Inglés a Español**
+- **Modelo:** Helsinki-NLP Opus MT
 - **Ruta:** `/translate`
 - **Método:** `POST`
 - **Descripción:** Recibe un texto en inglés y lo traduce al español.
