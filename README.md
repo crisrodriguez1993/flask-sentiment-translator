@@ -21,7 +21,7 @@ Antes de ejecutar la aplicación, asegúrate de tener instalado:
 
 1️⃣ **Clonar este repositorio**:
 ```bash
-git clone https://github.com/tuusuario/tu-repositorio.git
+git clone https://github.com/crisrodriguez1993/flask-sentiment-translator.git
 cd tu-repositorio
 ```
 
