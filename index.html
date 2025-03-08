@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analizador de Sentimientos y Traductor</title>
+    <script>
+        async function analyzeSentiment() {
+            const text = document.getElementById("sentimentText").value;
+
+            if (text.trim() === "") {
+                alert("Por favor, ingresa un texto para analizar el sentimiento.");
+                return;
+            }
+
+            const response = await fetch("http://127.0.0.1:5555/predict", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ text: text })
+            });
+
+            if (!response.ok) {
+                document.getElementById("sentimentResult").innerText = "Error en la predicción.";
+                return;
+            }
+
+            const data = await response.json();
+            document.getElementById("sentimentResult").innerText = `Predicción de Sentimiento: ${data.prediction}`;
+        }
+
+        async function translateText() {
+            const text = document.getElementById("translateText").value;
+
+            if (text.trim() === "") {
+                alert("Por favor, ingresa un texto en inglés para traducir.");
+                return;
+            }
+
+            const response = await fetch("http://127.0.0.1:5555/translate", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ text: text })
+            });
+
+            if (!response.ok) {
+                document.getElementById("translationResult").innerText = "Error en la traducción.";
+                return;
+            }
+
+            const data = await response.json();
+            document.getElementById("translationResult").innerText = `Traducción: ${data.translated_text}`;
+        }
+    </script>
+</head>
+<body>
+    <div style="max-width: 600px; margin: 0 auto; text-align: center; padding: 20px; font-family: Arial, sans-serif;">
+        <h1>Analizador de Sentimientos y Traductor</h1>
+
+        <!-- Sección de Análisis de Sentimiento -->
+        <h2>Analizador de Sentimiento</h2>
+        <textarea id="sentimentText" rows="4" cols="50" placeholder="Escribe un texto para analizar el sentimiento..."></textarea>
+        <br><br>
+        <button onclick="analyzeSentiment()" style="padding: 10px 15px; font-size: 16px; cursor: pointer;">Analizar Sentimiento</button>
+        <p id="sentimentResult" style="margin-top: 20px; font-size: 18px; font-weight: bold;"></p>
+
+        <hr>
+
+        <!-- Sección de Traducción -->
+        <h2>Traductor Inglés - Español</h2>
+        <textarea id="translateText" rows="4" cols="50" placeholder="Escribe un texto en inglés para traducir..."></textarea>
+        <br><br>
+        <button onclick="translateText()" style="padding: 10px 15px; font-size: 16px; cursor: pointer;">Traducir</button>
+        <p id="translationResult" style="margin-top: 20px; font-size: 18px; font-weight: bold;"></p>
+    </div>
+</body>
+</html>
